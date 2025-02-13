@@ -20,4 +20,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 # Comando para iniciar la aplicación Flask
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]
