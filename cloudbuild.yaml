@@ -21,6 +21,7 @@ steps:
 
 images:
   - 'gcr.io/$PROJECT_ID/mi-app-podcast:v1'
+logsBucket: "gs://podcast-yt/logs-docker-images"
 options:
   logging: CLOUD_LOGGING_ONLY
-  logsBucket: "gs://podcast-yt/logs-docker-images"
+  
