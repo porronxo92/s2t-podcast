@@ -1,11 +1,23 @@
 steps:
-  # Paso 1: Construir la imagen Docker
+  # 1️⃣ Construir la imagen con Docker
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/mi-app-podcast:v1', '.']
 
-  # Paso 2: Subir la imagen Docker a Google Container Registry
+  # 2️⃣ Subir la imagen a Artifact Registry o Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/mi-app-podcast:v1']
+
+  # 3️⃣ Desplegar en Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'mi-app-podcast'
+      - '--image=gcr.io/$PROJECT_ID/mi-app-podcast:v1'
+      - '--platform=managed'
+      - '--region=us-central1'
+      - '--allow-unauthenticated'
 
 images:
   - 'gcr.io/$PROJECT_ID/mi-app-podcast:v1'
