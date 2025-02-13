@@ -1,0 +1,11 @@
+steps:
+  # Paso 1: Construir la imagen Docker
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/mi-app-podcast:v1', '.']
+
+  # Paso 2: Subir la imagen Docker a Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/mi-app-podcast:v1']
+
+images:
+  - 'gcr.io/$PROJECT_ID/mi-app-podcast:v1'
