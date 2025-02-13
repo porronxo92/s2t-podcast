@@ -1,11 +1,11 @@
 steps:
   # 1️⃣ Construir la imagen con Docker
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'europe-southwest1-docker.pkg.dev/proyecto-s2t-podcast/docker-s2t-podcast:latest', '.']
+    args: ['build', '-t', 'europe-southwest1-docker.pkg.dev/proyecto-s2t-podcast/docker-s2t-podcast/s2t-podcast-image:latest', '.']
 
   # 2️⃣ Subir la imagen a Artifact Registry o Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-southwest1-docker.pkg.dev/proyecto-s2t-podcast/docker-s2t-podcast:latest']
+    args: ['push', 'europe-southwest1-docker.pkg.dev/proyecto-s2t-podcast/docker-s2t-podcast/s2t-podcast-image:latest']
 
   # 3️⃣ Desplegar en Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -14,13 +14,13 @@ steps:
       - 'run'
       - 'deploy'
       - 'mi-app-podcast'
-      - '--image=europe-southwest1-docker.pkg.dev/proyecto-s2t-podcast/docker-s2t-podcast:latest'
+      - '--image=europe-southwest1-docker.pkg.dev/proyecto-s2t-podcast/docker-s2t-podcast/s2t-podcast-image:latest'
       - '--platform=managed'
       - '--region=us-central1'
       - '--allow-unauthenticated'
 
 images:
-  - 'europe-southwest1-docker.pkg.dev/proyecto-s2t-podcast/docker-s2t-podcast:latest'
+  - 'europe-southwest1-docker.pkg.dev/proyecto-s2t-podcast/docker-s2t-podcast/s2t-podcast-image:latest'
 logsBucket: "gs://podcast-yt/logs-docker-images"
 options:
   logging: GCS_ONLY
