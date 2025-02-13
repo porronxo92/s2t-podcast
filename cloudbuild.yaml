@@ -13,10 +13,10 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'mi-app-podcast'
+      - 's2t-app-podcast'
       - '--image=europe-southwest1-docker.pkg.dev/proyecto-s2t-podcast/docker-s2t-podcast/s2t-podcast-image:latest'
       - '--platform=managed'
-      - '--region=us-central1'
+      - '--region=europe-southwest1'
       - '--allow-unauthenticated'
 
 images:
